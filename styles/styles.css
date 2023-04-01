@@ -6,13 +6,57 @@
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #9b4590;
+      background-color:rgb(20, 25, 32);
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(51, 216, 194, 0.596);
       padding: 1px;
       z-index: 1;
+      
     }
     
     .dropdown:hover .dropdown-content {
       display: block;
+    }
+    .judas {
+      background-image: url('../media/images-videos/judas2.jpg');
+    }
+    /*UNIVERSAL SELECTOR */
+    * {
+      font-family: Verdana, Arial, sans-serif;
+      background-color:rgb(20, 25, 32);
+      color: rgb(255, 255, 255);
+    }
+
+    /* WE GOIN RESPONSIVE  VIEWPORT KAI BOX SIZING
+    https://www.youtube.com/watch?v=WiAKOvgn3rU dog*/
+    /*https://www.youtube.com/watch?v=4CTSf1QRk9w bottom gear*/
+    /*https://www.youtube.com/watch?v=0JcM8jLAfdo FULL*/
+
+
+    table {
+      table-layout: fixed;
+      width: 100%;
+      border-collapse: collapse;
+      border: 3px solid rgb(0, 255, 191);
+    }
+    
+    /*thead th:nth-child(1) {
+      width: 30%;
+    }
+    
+    thead th:nth-child(2) {
+      width: 20%;
+    }
+    
+    thead th:nth-child(3) {
+      width: 15%;
+    }
+    
+    thead th:nth-child(4) {
+      width: 35%;
+    }
+    
+    th,*/
+    td {
+      padding: 5px;
     }
