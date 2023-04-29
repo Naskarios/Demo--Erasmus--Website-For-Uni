@@ -8,10 +8,12 @@
 
 <body>
     <div class="container">
-        <header class="col-l-12 col-m-12 col-s-12">KEFALI</header>
-        
-            <h3>Διαλεξε ιστοσελιδα</h3>
-            <nav>         
+        <div class="row">
+        <header class="col-s-12 col-m-12 col-l-12">KEFALI</header>
+        </div>
+        <div class="row">
+        <nav class="col-s-12 col-m-12 col-l-12 text-center">         
+                <h3>Διαλεξε ιστοσελιδα</h3>
            
                 <a href="index.htm">INDEX</a>|
                 <a href="application.html">application</a>|
@@ -21,10 +23,11 @@
                 <a href="more.html">more</a>
              
              </nav>
-        <h1>Δεν εχετε λογαριασμο???<br> <b>ΚΑΙΡΟΣ ΝΑ ΕΓΓΡΑΦΕΙΤΕ</b> </h1>
-        <img src="images-videos/ino.gif" al>
-        <form method="get">
-            Ονομα &nbsp;: <INPUT type="text" name="name" placeholder="nasos" required> <BR>
+             <img src="images-videos/ino.gif" al>
+        <form method="get" class="col-s-12 col-m-12 col-l-12 text-center">
+            <h1>Δεν εχετε λογαριασμο??? <b>ΚΑΙΡΟΣ ΝΑ ΕΓΓΡΑΦΕΙΤΕ</b> </h1>
+
+            Ονομα &nbsp;: <INPUT type="text" name="name" placeholder="nasos" required>
             Επιθετο &nbsp;: <INPUT type="text" name="surname" placeholder="karras" required> <BR>
             Αριθμός μητρώου &nbsp;: <INPUT type="text" name="am" placeholder="2022202000082" required> <BR>
         <!--Προτιμω text λογω του συγκεκριμενου format +30 10digits θα το διωρθωσω με javascript 
@@ -41,10 +44,13 @@
             <INPUT type="text" name="password2" required> 
             <BR><input type="submit" value="hlia rixto"><br>
         </form>
-
-        <footer>
-            <a href="judas.htm">παρακαλω να ειστε νομιμος πολιτης</a>
-        </footer>
+        </div>
+        <div class="row">
+            <footer class="col-s-12 col-m-12 col-l-12" >
+                <a href="judas.htm">παρακαλω να ειστε νομιμος πολιτης</a>
+            </footer>
+        </div>
+        <br>
     </div>
 </body>
 </html> 
