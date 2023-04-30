@@ -1,7 +1,81 @@
+
+  /* GRID SPECIFIC */
+.container{
+                /*5 X 5 GRID */
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: repeat(5,minmax(30px,auto));
+  margin: 0 px;
+  border: 3px solid rgb(251, 255, 0);
+  width: 100%;
+  height: 100%;
+  
+  
+}
+.container div{
+  border: 3px solid rgb(255, 0, 0);
+}
+.first{ grid-column: 1/6; grid-row: 1/2; } 
+.second{  grid-column: 1/2; grid-row: 2/3;}
+.third{ grid-column: 2/4; grid-row: 2/5;}
+.fourth{grid-column: 4/6; grid-row: 2/5;}
+.last{ grid-column: 1/6; grid-row: 5/6; }
+/*
+.fifth{}
+.sixth{}
+*/
+.sidebar{
+  float: left;
+}
+    /* FOUNDATIONAL TAGS-CLASSES*/
+main{
+  float: right;
+  
+}
 nav {
   display: block;
   border: 3px solid rgb(0, 255, 191);
   
+}
+header{
+/*  background-color:rgb(44, 58, 78);*/
+background-color:rgb(83, 52, 196);
+  color: rgb(68, 202, 113);
+  padding: 1px;  
+}
+
+footer{
+  background-color:rgb(44, 58, 78);
+  color: rgb(99, 1, 1);
+  padding: 1px;
+  clear: both;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid rgb(0, 255, 191);
+}
+td {
+  padding: 5px;
+}
+    /*UNIVERSAL SELECTOR */
+* {
+  font-family: Verdana, Arial, sans-serif;
+  background-color:rgb(36, 89, 92);
+  color: rgb(255, 255, 255);
+  box-sizing: border-box;
+  max-width: 100%;
+  max-height: 100%;
+}
+ a{
+  color: #00ff15;
+ }
+
+    /* CUSTOM STUFF*/
+.text-center {
+  text-align: center;
 }
 .dropdown {
   position: relative;
@@ -24,16 +98,6 @@ nav {
     .judas {
       background-image: url('../media/images-videos/judas2.jpg');
     }
-    /*UNIVERSAL SELECTOR */
-    * {
-      font-family: Verdana, Arial, sans-serif;
-      /*background-color:rgb(20, 25, 32);*/
-      background-color:rgb(119, 27, 128);
-      color: rgb(255, 255, 255);
-      box-sizing: border-box;
-      max-width: 100%;
-      max-height: 100%;
-    }
 
     /* WE GOIN RESPONSIVE 
     TO DO: collum fixing and html5 format "style" fixes
@@ -42,103 +106,19 @@ nav {
     /*https://www.youtube.com/watch?v=0JcM8jLAfdo FULL*/
 
 
-    table {
-      table-layout: fixed;
-      width: 100%;
-      border-collapse: collapse;
-      border: 3px solid rgb(0, 255, 191);
-    }
-    td {
-      padding: 5px;
-    }
-
-    .container{
-      margin: 0 px;
-      border: 3px solid rgb(251, 255, 0);
-      width: 100%;
-      line-height: 150%;
-      position: relative;
-    }
-
-    header{
-      background-color: rgb(82, 202, 92);
-      color: rgb(172, 7, 7);
-      padding: 1px;
-      
-    }
-
-    footer{
-      background-color: aqua;
-      color: rgb(99, 1, 1);
-      padding: 1px;
-      clear: both;
-    }
-
-    [class*="col-"]
-    {
-      float: left; 
-      padding: 10px;
-    }
-    /*estw kai padding*/
-/*Για κάθε, λοιπόν, γραμμή που θέλουμε να δημιουργήσουμε, 
-θα δημιουργούμε ένα γραμμής ( ) και μέσα σε αυτό 
-θα τοποθετούμε όσες περιοχές ( ) επιθυμούμε, 
-προσέχοντας μόνο το άθροισμα των στηλών των περιοχών 
-αυτών να μην ξεπερνάει τις 12*/
-
-    .col-l-1 {width: 8.33%}
-    .col-l-2 {width: 16.66%}
-    .col-l-3 {width: 25%}
-    .col-l-4 {width: 33.33%}
-    .col-l-5 {width: 41.66%}
-    .col-l-6 {width: 50%}
-    .col-l-7 {width: 58.33%}
-    .col-l-8 {width: 66.66%}
-    .col-l-9 {width: 75%}
-    .col-l-10 {width: 83.33%}
-    .col-l-11 {width: 91.66%}
-    .col-l-12 {width: 100%}
-
 @media screen and (max-width:768px) {
   /*tablet*/
-  .col-m-1 {width: 8.33%}
-  .col-m-2 {width: 16.66%}
-  .col-m-3 {width: 25%}
-  .col-m-4 {width: 33.33%}
-  .col-m-5 {width: 41.66%}
-  .col-m-6 {width: 50%}
-  .col-m-7 {width: 58.33%}
-  .col-m-8 {width: 66.66%}
-  .col-m-9 {width: 75%}
-  .col-m-10 {width: 83.33%}
-  .col-m-11 {width: 91.66%}
-  .col-m-12 {width: 100%}
+
   header{background-color: rgb(0, 215, 243);}
-  *{box-sizing: border-box;
-  }
+
 }
 
 @media screen and (max-width:600px) {
   /*phone*/
-  .col-s-1 {width: 8.33%}
-  .col-s-2 {width: 16.66%}
-  .col-s-3 {width: 25%}
-  .col-s-4 {width: 33.33%}
-  .col-s-5 {width: 41.66%}
-  .col-s-6 {width: 50%}
-  .col-s-7 {width: 58.33%}
-  .col-s-8 {width: 66.66%}
-  .col-s-9 {width: 75%}
-  .col-s-10 {width: 83.33%}
-  .col-s-11 {width: 91.66%}
-  .col-s-12 {width: 100%}
+
   header{background-color: lightblue;}
-  *{box-sizing: border-box;
-    height: 100%;} /* OH LORD ITS GETTING SUCKED*/
-}
-
-.text-center {
-
-  text-align: center;
-
+  .first{ grid-column: 1/6; grid-row: 1/2; } 
+  .second{  grid-column: 1/6; grid-row: 2/3;}
+  .third{ grid-column: 1/6; grid-row: 3/5;}
+  .last{ grid-column: 1/6; grid-row: 5/6; }
 }
