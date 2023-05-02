@@ -36,7 +36,7 @@ main{
 nav {
   display: block;
   border: 3px solid rgb(0, 255, 191);
-  
+  background-color:rgb(128, 69, 128);
 }
 .sidebar{
   float: right;
