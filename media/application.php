@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+    if(!isset($_COOKIE["registered"])){
+        header("Location: login.php");
+        exit;
+    }
+?>
 <html>
     
     <head>

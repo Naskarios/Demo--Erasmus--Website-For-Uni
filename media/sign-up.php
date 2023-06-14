@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<?php 
-setcookie("username", $_GET["username"], time()+3600);
+<?php
+    if(isset($_COOKIE["registered"])){
+        header("Location: more.php");
+        exit;
+    }
 ?>
 <html>
     <head>
@@ -19,12 +22,12 @@ setcookie("username", $_GET["username"], time()+3600);
         <div class="sidebar second">
             <nav>         
                 <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
-                <a class="a1 " href="index.php">.INDEX</a>
-                <a class="a1 " href="application.php">application</a>
-                <a class="a1 " href="reqs.php">reqs</a>
-                <a class="a1 " href="sign-up.php">sign-up</a>
-                <a class="a1 " href="login.php">login</a>
-                <a class="a1 " href="more.php">more</a>  
+                <a class="a1" href="index.php">.INDEX</a>
+                <a class="a1" href="application.php">application</a>
+                <a class="a1" href="reqs.php">reqs</a>
+                <a class="a1" href="sign-up.php">sign-up</a>
+                <a class="a1" href="login.php">login</a>
+                <a class="a1" href="more.php">more</a>  
             </nav>
         </div>
         <div class="third not_main">
@@ -51,7 +54,6 @@ setcookie("username", $_GET["username"], time()+3600);
                         <INPUT type="text" name="password2" required> 
                         <BR><input type="submit" value="hlia rixto"><br>
                     </form>
-            
         </div> 
         <div class="last">
             <footer>

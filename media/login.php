@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-
-<?php 
-setcookie("username", "ntsel", time()+3600);
+<?php
+    if(isset($_COOKIE["registered"])){
+        header("Location: more.php");
+        exit;
+    }
+//   setcookie("registered","peos", time()+3600);
 ?>
 <html>
     <head>
