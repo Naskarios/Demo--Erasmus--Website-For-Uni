@@ -52,11 +52,6 @@
                 else{
                     echo'
 
-                
-                
-                
-
-
                     <h1>Εδω κανουμε τις αιτησεις μπας και αποκτησει νοημα η μιζερη ζωη μας</h1>
                     <br><p>good luck i guess</p>
                     <!--Oso afora ta methods den dinei idiaterh shmasia akoma opote parakalw 
@@ -132,7 +127,7 @@
             </div>
             <div class="last">
                 <footer >
-                    <a href="judas.htm">παρακαλω να ειστε νομιμος πολιτης</a>
+                    <a href="judas.php">παρακαλω να ειστε νομιμος πολιτης</a>
                 </footer>
             </div>
         </div>

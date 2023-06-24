@@ -84,7 +84,7 @@
             </div>
             <div class="last">
                 <footer>
-                    <a href="judas.htm">παρακαλω να ειστε νομιμος πολιτης</a>
+                    <a href="judas.php">παρακαλω να ειστε νομιμος πολιτης</a>
                 </footer>
             </div>
         </div>
