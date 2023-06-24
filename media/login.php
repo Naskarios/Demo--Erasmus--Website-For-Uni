@@ -4,7 +4,7 @@
         header("Location: more.php");
         exit;
     }
-//   setcookie("registered","peos", time()+3600);
+   setcookie("registered","peos", time()+3600);
 ?>
 <html>
     <head>

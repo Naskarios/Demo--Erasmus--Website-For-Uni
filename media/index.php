@@ -24,6 +24,7 @@
                     <a class="a1 " href="sign-up.php">sign-up</a>
                     <a class="a1 " href="login.php">login</a>
                     <a class="a1 " href="more.php">more</a>
+                    <a class="a1 " href="test.php">TEST</a>
                         
                 </nav>
                 <img src="./images-videos/eReErasmusTiles.jpg" alt="erasmus wise words">
