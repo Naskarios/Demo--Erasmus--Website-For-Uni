@@ -1,0 +1,121 @@
+/* GRID SPECIFIC */
+.container{
+                    /*5 X 5 GRID */
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: repeat(5,minmax(30px,auto));
+  grid-gap: 5px;
+  grid-auto-rows: auto;
+  margin: 0 px auto;
+  background-color:rgb(36, 89, 92);
+  /*border: 3px solid rgb(251, 255, 0);*/
+  width: 100%;
+  height: 100%;
+  line-height: 150%;
+}
+/*.container div{
+  border: 3px solid rgb(255, 0, 0);
+}*/
+.first{ grid-column: 1/6; grid-row: 1/2;} 
+.second{  grid-column: 1/2; grid-row: 2/3;}
+.third{ grid-column: 2/5; grid-row: 2/5;}
+.fourth{grid-column: 5/6; grid-row: 2/5;}
+.last{ grid-column: 1/6; grid-row: 5/6; }
+
+/* FOUNDATIONAL TAGS-CLASSES*/
+body{background-color:rgb(36, 89, 92);}
+
+input, textarea,select {
+  background-color: #1a1818;
+}
+main{
+  float: left;
+  background-color:rgb(27, 122, 91);
+}
+
+nav {
+  display: block;
+  border: 3px solid rgb(0, 255, 191);
+  background-color:rgb(128, 69, 128);
+}
+.sidebar{
+  float: right;
+}
+
+header{
+/*  background-color:rgb(44, 58, 78);*/
+background-color:rgb(83, 52, 196);
+  color: rgb(68, 202, 113);
+  padding: 1px;  
+}
+
+footer{
+  background-color:rgb(44, 58, 78);
+  color: rgb(99, 1, 1);
+  padding: 1px;
+  clear: both;
+}
+footer a{
+  background-color:rgb(44, 58, 78);
+}
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid rgb(202, 157, 228);
+}
+td {
+  padding: 5px;
+}
+    /*UNIVERSAL SELECTOR */
+* {
+  font-family: Verdana, Arial, sans-serif;
+  
+  color: rgb(255, 255, 255);
+  box-sizing: border-box;
+  max-width: 100%;
+  
+}
+ a{
+  color: #00ff15;
+ }
+
+    /* CUSTOM STUFF*/
+
+    .not_main{background-color:rgb(27, 122, 91);
+    }
+    .not_main2{background-color:rgb(122, 27, 101);
+    }
+.text-center {
+  text-align: center;
+}
+    .judas {
+      background-image: url('../media/images-videos/judas2.jpg');
+    }
+    .monkeyy {
+      background-image: url('../media/images-videos/wallpaper.png');
+    }       
+
+
+@media screen and (max-width:768px) {
+  /*tablet*/
+  *{font-size: 18px;}
+  header{background-color: rgb(0, 215, 243);}
+  .first{ grid-column: 1/6; grid-row: 1/2; } 
+  .second{  grid-column: 1/6; grid-row: 3/4;}
+  .third{ grid-column: 1/6; grid-row: 4/5;}
+  .fourth{grid-column: 1/6; grid-row: 5/6;}
+  .last{ grid-column: 1/6; grid-row: 2/3; }
+}
+
+@media screen and (max-width:600px) {
+  /*phone*/
+  *{font-size: 16px;}
+  header{background-color: lightblue;}
+  .first{ grid-column: 1/6; grid-row: 1/2; } 
+  .second{  grid-column: 1/6; grid-row: 2/3;}
+  .third{ grid-column: 1/6; grid-row: 3/4;}
+  .fourth{grid-column: 1/6; grid-row: 4/5;}
+  .last{ grid-column: 1/6; grid-row: 5/6; }
+
+}
