@@ -34,7 +34,7 @@
             <p>BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW 
                 <br>BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW BREAKING THE LAW 
             </p>
-            <a href="arctic.htm" class="not_main">Τωρα ομως ας βαλουμε λιγο σωστη μουσικη</a>
+            <a href="arctic.php" class="not_main">Τωρα ομως ας βαλουμε λιγο σωστη μουσικη</a>
         </div>
     </div>
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     if(!isset($_COOKIE["registered"])){
-        header("Location: login.php");
+        header("Location: application.php");
         exit;
     }
 ?>
@@ -37,6 +37,21 @@
             
             <div class="third">
                 <main>
+
+                <?php
+                
+                require_once("dbinfo.php");
+                $curDate=date("Y-m-d"); 
+                $con=mysqli_connect($servername, $usr, $psw,$db);
+                $sql="SELECT * FROM dates WHERE endDate >= DATE  '$curDate' ORDER BY endDate ASC";
+                $result = mysqli_query($con,$sql);     
+                $users_arr = mysqli_fetch_all($result);
+                if(!$users_arr[0]){   
+                    echo"<h2>UNFORTUNATELY, <br> YOU CANNOT APPLY IN THIS TIME PERIOD</h2>";
+                }
+                else{
+                    echo'
+
                     <h1>Εδω κανουμε τις αιτησεις μπας και αποκτησει νοημα η μιζερη ζωη μας</h1>
                     <br><p>good luck i guess</p>
                     <!--Oso afora ta methods den dinei idiaterh shmasia akoma opote parakalw 
@@ -103,6 +118,8 @@
                             νταξ <BR>
                     </form>
                 </main>
+            ';}
+            ?>
             </div>
             <div class="fourth">
                     <img src="images-videos/u2nknown.png" alt="good luck anime girl"> 
@@ -110,7 +127,7 @@
             </div>
             <div class="last">
                 <footer >
-                    <a href="judas.htm">παρακαλω να ειστε νομιμος πολιτης</a>
+                    <a href="judas.php">παρακαλω να ειστε νομιμος πολιτης</a>
                 </footer>
             </div>
         </div>

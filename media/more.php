@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-
+<?php
+    if(isset($_COOKIE["registered"])){
+        header("Location: more.php");
+        exit;
+    }
+?>
 <html>
     <head>   
         <title>ΚΙΑΛΛΑ ΓΙΑ ΤΟΝ ΚΥΡ ERASMUS</title>
@@ -19,7 +24,11 @@
                     <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
                     
                     <a class="a1 " href="index.php">.INDEX</a>
-                    <a class="a1 " href="application.php">application</a>
+                    <?php
+                    if (isset($_COOKIE["registered"])) {
+                        echo '<a class="a1" href="application.php">application</a>';
+                    }
+                    ?>
                     <a class="a1 " href="reqs.php">reqs</a>
                     <a class="a1 " href="sign-up.php">sign-up</a>
                     <a class="a1 " href="login.php">login</a>
@@ -75,7 +84,7 @@
             </div>
             <div class="last">
                 <footer>
-                    <a href="judas.htm">παρακαλω να ειστε νομιμος πολιτης</a>
+                    <a href="judas.php">παρακαλω να ειστε νομιμος πολιτης</a>
                 </footer>
             </div>
         </div>
