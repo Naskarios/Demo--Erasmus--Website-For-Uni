@@ -83,7 +83,7 @@
             </div>
             <div class="last">
                 <footer>
-                    <a href="judas.htm">παρακαλώ να είστε νόμιμος πολίτης</a>
+                    <a href="judas.php">παρακαλώ να είστε νόμιμος πολίτης</a>
                 </footer>
             </div>
         </div>
