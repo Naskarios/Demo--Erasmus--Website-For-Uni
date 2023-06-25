@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<?php
-    if(isset($_COOKIE["registered"])){
-        header("Location: index.php");
-        exit;
-    }
-?>
+
 <html>
     <head>
         <title>O PIO ERASMUS</title>
@@ -23,18 +18,23 @@
             <div class="sidebar second">
                 <nav>         
                     <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
-                    
+                         <?php
+                            if (isset($_COOKIE["user"])) {
+                                echo 'Welcome '.$_COOKIE["user"]."<br>";
+                                echo '<a class="a1" href="profile.php">my profile</a>';
+                            }
+                        ?>               
                     <a class="a1 " href="index.php">.INDEX</a>
+                    <a class="a1 " href="admin.php">admin</a>
                     <?php
-                    if (isset($_COOKIE["registered"])) {
-                        echo '<a class="a1" href="application.php">application</a>';
-                    }
+                        if (isset($_COOKIE["user"])) {
+                            echo '<a class="a1" href="application.php">application</a>';
+                        }
                     ?>
                     <a class="a1 " href="reqs.php">reqs</a>
                     <a class="a1 " href="sign-up.php">sign-up</a>
                     <a class="a1 " href="login.php">login</a>
                     <a class="a1 " href="more.php">more</a>
-                        
                 </nav>
                 <img src="./images-videos/eReErasmusTiles.jpg" alt="erasmus wise words">
             </div>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html> 
     <head>
         <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
@@ -16,12 +17,20 @@
                 <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
                 
                 <a class="a1 " href="index.php">.INDEX</a>
-                <a class="a1 " href="application.php">application</a>
+                <?php
+                    if (isset($_COOKIE["registered"])) {
+                        echo '<a class="a1" href="application.php">application</a>';
+                    }
+                    ?>
                 <a class="a1 " href="reqs.php">reqs</a>
                 <a class="a1 " href="sign-up.php">sign-up</a>
                 <a class="a1 " href="login.php">login</a>
                 <a class="a1 " href="more.php">more</a>
-                    
+                <?php
+                    if (isset($_COOKIE["registered"])) {
+                        echo '<a class="a1" href="profile.php">profile</a>';
+                    }
+                    ?>
             </nav>
             <img src="./images-videos/painkillah.png" alt="a pretty good oldschool band">
         </div>

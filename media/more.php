@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<?php
-    if(isset($_COOKIE["registered"])){
-        header("Location: more.php");
-        exit;
-    }
-?>
+
 <html>
     <head>   
         <title>ΚΙΑΛΛΑ ΓΙΑ ΤΟΝ ΚΥΡ ERASMUS</title>
@@ -23,9 +18,15 @@
                 <nav>         
                     <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
                     
+                    <?php
+                            if (isset($_COOKIE["user"])) {
+                                echo 'Welcome '.$_COOKIE["user"]."<br>";
+                                echo '<a class="a1" href="profile.php">my profile</a>';
+                            }
+                        ?> 
                     <a class="a1 " href="index.php">.INDEX</a>
                     <?php
-                    if (isset($_COOKIE["registered"])) {
+                    if (isset($_COOKIE["user"])) {
                         echo '<a class="a1" href="application.php">application</a>';
                     }
                     ?>
@@ -33,7 +34,6 @@
                     <a class="a1 " href="sign-up.php">sign-up</a>
                     <a class="a1 " href="login.php">login</a>
                     <a class="a1 " href="more.php">more</a>
-                        
                 </nav>
                 <ul>Αν θέλετε να μάθετε για τα συνεργαζόμενα πανεπιστήμια<br>Μη διστάσετε να αναζητήσετε τις πληροφορίες μόνοι σας
                     <li><a href="https://www.hustlers.university/" target="_blank">Hustlers University</a>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
-    if(isset($_COOKIE["registered"])){
+    
+    if(isset($_COOKIE["user"])){
         header("Location: more.php");
         exit;
     }
@@ -21,12 +22,7 @@
             <nav>         
                 <h3 class="a1">Διαλέξε ιστοσελίδα</h3>
                 <a class="a1" href="index.php">.INDEX</a>
-                <?php
-                    if (isset($_COOKIE["registered"])) {
-                        echo '<a class="a1" href="application.php">application</a>';
-                    }
-                    ?>
-                <a class="a1" href="application.php">application</a>
+                
                 <a class="a1" href="reqs.php">reqs</a>
                 <a class="a1" href="sign-up.php">sign-up</a>
                 <a class="a1" href="login.php">login</a>
@@ -34,7 +30,7 @@
             </nav>
         </div>
         <div class="third not_main">
-            <form method="post" class="text-center" onsubmit="return validateForm()">
+            <form method="post" class="text-center" onsubmit="return validateForm()" action="sign-up.php">
                 <h1>Δεν έχετε λογαριασμό;</h1>
                 <h1><b>ΚΑΙΡΟΣ ΝΑ ΕΓΓΡΑΦΕΙΤΕ</b></h1>
                 <img src="images-videos/ino.gif" alt="smirking guy">
@@ -60,6 +56,8 @@
     <script src="../scripts/sign-up.js"></script>
 
     <?php
+    
+    
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $fname = $_POST["fname"];
         $lname = $_POST["lname"];
@@ -68,27 +66,19 @@
         $email = $_POST["email"];
         $username = $_POST["username"];
         $password = $_POST["password"];
+        
+        
+        
+        require_once("dbinfo.php");
+        $conn = mysqli_connect($servername, $usr, $psw, $db);
+                //  IF USERNAME DOESNT EXIST 
+                if( checkUsername($username) == 1)
+                    echo "USER ALREADY EXISTS";
+                else{
+                    $sql = "INSERT INTO users (fname, lname, a_m, tel, email, username, password) VALUES ('$fname', '$lname', '$a_m', '$tel', '$email', '$username', '$password')";
+                    mysqli_query($conn, $sql);
+                }
 
-        $servername = "your_servername";
-        $username = "your_username";
-        $password = "your_password";
-        $dbname = "your_dbname";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "INSERT INTO users (fname, lname, a_m, tel, email, username, password) VALUES ('$fname', '$lname', '$a_m', '$tel', '$email', '$username', '$password')";
-
-        if ($conn->query($sql) === TRUE) {
-            echo "Registered successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-
-        $conn->close();
     }
     ?>
 

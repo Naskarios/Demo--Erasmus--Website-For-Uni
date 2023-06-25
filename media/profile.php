@@ -1,41 +1,10 @@
 <?php
-    if (!isset($_COOKIE["registered"])) {
-        header("Location: profile.php");
-        exit;
-    }
+                require_once("dbinfo.php");
 
-    // Handle form submission
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve the updated profile information from the form
-        $name = $_POST["name"];
-        $surname = $_POST["surname"];
-        $studentId = $_POST["student_id"];
-        $email = $_POST["email"];
-        $phone = $_POST["phone"];
+    
 
-        // Update the profile information in the database
-        $host = "your_host";
-        $username = "your_username";
-        $password = "your_password";
-        $database = "your_database";
-
-        $conn = mysqli_connect($host, $username, $password, $database);
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
-
-        $username = $_COOKIE["registered"];
-        $sql = "UPDATE users SET fname = '$name', lname = '$surname', a_m = '$studentId', email = '$email', tel = '$phone' WHERE username = '$username'";
-
-        if (mysqli_query($conn, $sql)) {
-            echo "<p>Profile updated successfully.</p>";
-        } else {
-            echo "<p>Error updating profile: " . mysqli_error($conn) . "</p>";
-        }
-
-        mysqli_close($conn);
-    }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -56,44 +25,59 @@
                 <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
                 
                 <a class="a1" href="index.php">.INDEX</a>
-                <?php
-                    if (isset($_COOKIE["registered"])) {
-                        echo '<a class="a1" href="application.php">application</a>';
-                    }
-                    ?>
+                <a class="a1" href="application.php">application</a>
                 <a class="a1" href="reqs.php">reqs</a>
                 <a class="a1" href="sign-up.php">sign-up</a>
                 <a class="a1" href="login.php">login</a>
-                <a class="a1" href="more.php">more</a>
-                <?php
-                    if (isset($_COOKIE["registered"])) {
-                        echo '<a class="a1" href="profile.php">profile</a>';
-                    }
-                    ?>
+                <a class="a1" href="more.php">more</a>                    
+                <a class="a1" href="profile.php">profile</a>
             </nav>
         </div>
         <div class="third text-center not_main">
+
             <h1>Edit Profile</h1>
             
             <?php
-            $host = "your_host";
-            $username = "your_username";
-            $password = "your_password";
-            $database = "your_database";
-
-            $conn = mysqli_connect($host, $username, $password, $database);
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    echo "profile updated";
+                    // Retrieve the updated profile information from the form
+                    $name = $_POST["name"];
+                    $surname = $_POST["surname"];
+                    $studentId = $_POST["student_id"];
+                    $email = $_POST["email"];
+                    $phone = $_POST["phone"];
+                    
+                    // Update the profile information in the database
+            
+                    $conn = mysqli_connect($servername, $usr, $psw, $db);
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+            
+                    $username = $_COOKIE["user"];
+                    $sql = "UPDATE users SET fname = '$name', lname = '$surname', a_m = '$studentId', email = '$email', tel = '$phone' WHERE username = '$username'";
+                    mysqli_query($conn,$sql);
+                }
+            
+            
+            $conn = mysqli_connect($servername, $usr, $psw, $db);
             if (!$conn) {
                 die("Connection failed: " . mysqli_connect_error());
             }
-
-            $username = $_COOKIE["registered"];
+            
+            $username = $_COOKIE["user"];
             $sql = "SELECT * FROM users WHERE username = '$username'";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
+            }
+            
+            mysqli_close($conn);
             ?>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+
+            <!-- <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"> -->
+            <form method="post" action="profile.php">
                 <label for="name">Name:</label>
                 <input type="text" name="name" value="<?php echo $row["fname"]; ?>"><br>
 
@@ -111,11 +95,9 @@
 
                 <input type="submit" value="Update Profile">
             </form>
-            <?php
-            }
 
-            mysqli_close($conn);
-            ?>
+            <!-- <?php
+            ?> -->
         </div>
         <div class="last">
             <footer>

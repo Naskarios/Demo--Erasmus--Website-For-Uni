@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <?php
-    if(isset($_COOKIE["registered"])){
+    require_once("dbinfo.php");
+    if(isset($_COOKIE["user"])){
         header("Location: more.php");
         exit;
     }
-//   setcookie("registered","peos", time()+3600);
+   //setcookie("registered","peos", time()+3600);
 ?>
 <html>
 <head>
@@ -24,16 +25,12 @@
                 <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
                 
                 <a class="a1" href="index.php">.INDEX</a>
-                <?php
-                    if (isset($_COOKIE["registered"])) {
-                        echo '<a class="a1" href="application.php">application</a>';
-                    }
-                ?>
+
                 <a class="a1" href="reqs.php">reqs</a>
                 <a class="a1" href="sign-up.php">sign-up</a>
                 <a class="a1" href="login.php">login</a>
                 <a class="a1" href="more.php">more</a>
-                    
+
             </nav>
         </div>
         <div class="third text-center not_main">
@@ -46,37 +43,48 @@
                 <input type="submit" value="Login">
             </form>
             <img src="images-videos/tumblr_pkrdbmE5BJ1tgt008_1280-1340755888.png" alt="erasmus potrait"> 
-
             <?php
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $host = "your_host";
-                    $username = "your_username";
-                    $password = "your_password";
-                    $database = "your_database";
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-                    $conn = mysqli_connect($host, $username, $password, $database);
-                    if (!$conn) {
-                        die("Connection failed: " . mysqli_connect_error());
-                    }
 
-                    $username = $_POST["username"];
-                    $password = $_POST["password"];
+                $conn = mysqli_connect($servername, $usr, $psw, $db);
 
-                    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-                    $result = mysqli_query($conn, $sql);
-
-                    if (mysqli_num_rows($result) == 1) {
-                        // Login successful
-                        setcookie("registered", "peos", time() + 3600, "/");
-                        header("Location: index.php");
-                        exit;
-                    } else {
-                        // Login failed
-                        echo "<p class='error'>Invalid username or password.</p>";
-                    }
-
-                    mysqli_close($conn);
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
                 }
+
+                $username = $_POST["username"];
+                $password = $_POST["password"];
+
+                $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+                $result = mysqli_query($conn, $sql);
+
+                if (mysqli_num_rows($result) == 1) {
+                    // Login successful
+
+                    // setcookie("registered", "peos", time() + 3600, "/");
+                    // header("Location: index.php");
+                    // exit;
+                    
+                    setcookie("user",$username, time()+3600);
+                    
+                    $sql = "SELECT * FROM users WHERE username = '$username' AND user_id=1";
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) == 1){
+                        setcookie("admin",$username, time()+3600);
+                        echo "<p>valid admin</p>";
+                    }
+                    else
+                        echo "<p>not an admin</p>";
+
+                    echo "<p>valid user</p><br>";
+                } else {
+                    // Login failed
+                    echo "<p class='error'>Invalid username or password.</p>";
+                }
+
+                mysqli_close($conn);
+            }
             ?>
         </div>
         <div class="last">
