@@ -63,10 +63,7 @@ if($con){
     //     // 3) Επιλεγμένη εμφάνιση των αιτήσεων που αφορούν συγκεκριμένο πανεπιστήμιο του 
     //     // εξωτερικού  Η επιλογή του πανεπιστημίου θα γίνεται από σχετικό drop-down list,
     //     $sql="SELECT * FROM application WHERE uni1='$given'  ORDER BY moClass DESC
-    //     UNION
-    //     SELECT * FROM application WHERE uni2='$given'  ORDER BY moClass DESC
-    //     UNION
-    //     SELECT * FROM application WHERE uni3='$given'  ORDER BY moClass DESC";
+
     
     // // γ) Επιλογή για την εμφάνιση όλων των αιτήσεων που έχουν χαρακτηριστεί δεκτές έως εκείνη 
     //     $sql="SELECT * FROM application WHERE approval=1;

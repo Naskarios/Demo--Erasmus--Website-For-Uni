@@ -5,7 +5,8 @@ $usr="root";
 $psw="";
 $db="basika";
 
-function printQuery($users_arr){
+function printQuery($users_arr,$flag){
+    $i=0;
     $thead = '<thead>
 <tr>';
     foreach($users_arr[0] as $key => $value) {
@@ -20,13 +21,21 @@ $tbody .= '<tr>';
     foreach($value as $k => $v) {
     $tbody .= '<td>' . $v . '</td>';
     }
+    if($flag==0)
     $tbody .= '</tr>';
+    else{
+        $tbody .= '<td><INPUT type="checkbox" name="checkbox'.$i.' value="checkbox_option_1"></td></tr>';
+        $i++;
+    }
 }
 $tbody .= '</tbody>';
 // render table
+// <form><INPUT type="checkbox" name="checkbox" value="checkbox_option_1"></form>
 $table = '<table>' . $thead . $tbody . '</table>';
 echo $table;
+
 }
+
 
 function checkUsername($username){
     $servername="localhost";
@@ -46,7 +55,7 @@ function checkUsername($username){
     return $flag;
 }
 ?>
-
+<!-- $tbody .= '<td><form><INPUT type="checkbox" name="checkbox" value="checkbox_option_1"></form></td></tr>'; -->
 <!-- AMA EINAI registered
 no login no sign
 AMA DEN 

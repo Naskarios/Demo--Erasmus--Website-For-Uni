@@ -17,7 +17,6 @@
             <div class="sidebar second">
                 <nav>         
                     <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
-                    
                     <?php
                             if (isset($_COOKIE["user"])) {
                                 echo 'Welcome '.$_COOKIE["user"]."<br>";

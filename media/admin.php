@@ -1,5 +1,9 @@
 <?php
                 require_once("dbinfo.php");
+                if(!isset($_COOKIE["admin"])){
+                    header("Location: more.php");
+                    exit;
+                }
 ?>
 
 <!DOCTYPE html>
@@ -19,8 +23,11 @@
         <div class="sidebar second">
             <nav>         
                 <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
-                
-                <a class="a1" href="index.php">.INDEX</a>
+                <?php if(isset($_COOKIE["admin"])){
+                    echo "Welcome admin<br>";
+                }
+                ?>
+                <a class="a1" href="index.php">INDEX</a>
                 <a class="a1" href="application.php">application</a>
                 <a class="a1" href="reqs.php">reqs</a>
                 <a class="a1" href="sign-up.php">sign-up</a>
@@ -40,11 +47,37 @@
             <?php
                     require_once("dbinfo.php");
                     $conn = mysqli_connect($servername,$usr,$psw,$db);
+                    //1... $sql="SELECT * FROM application ORDER BY moClass DESC"; 
+                    //2... $sql="SELECT * FROM application WHERE percentClass>=70  ORDER BY moClass DESC";
+                    //3.......$sql="SELECT * FROM application WHERE uni1='$given'  ORDER BY moClass DESC
+                    // echo "drop<select name='paneps'>";
+                    // for($i=0;$i<mysqli_num_rows($result);$i++)
+                    //     echo '<option selected value="'.$users_arr[$i][1].'">'.$users_arr[$i][1].'';
+                    // echo '</select>';
+                    // echo '<input type="submit" value="Search"><br>';
+                    //4....
+                    //5... $sql="SELECT * FROM universities"; 
+                    //6... $sql="SELECT * FROM users where user_type_id=1"; 
                     $sql="SELECT * FROM universities";
-                    $result = mysqli_query($conn,$sql);
-                    $users_arr = mysqli_fetch_all($result);
-                    printQuery($users_arr);
+
+
+
+
+
+
+// print_r( $users_arr[$i][0]); id of application
+
+$result = mysqli_query($conn,$sql);
+$users_arr = mysqli_fetch_all($result);
+printQuery($users_arr,0);
+
+
                     mysqli_close($conn);
+                    //for 4.... aprroval of uni
+                    // echo "<form method=post action=admin.php>";
+                    // printQuery($users_arr,1);
+                    // echo "<input type='submit' value='Meme Approved'></form>";
+                    // mysqli_close($conn);
             ?>
         </div>
         <div class="last">

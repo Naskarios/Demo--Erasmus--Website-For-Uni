@@ -1,4 +1,4 @@
-`<!DOCTYPE html>
+<!DOCTYPE html>
 <?php
     require_once("dbinfo.php");
     if(isset($_COOKIE["user"])){
