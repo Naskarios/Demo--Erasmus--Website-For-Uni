@@ -80,7 +80,7 @@ if($con){
     
    
     
-    $sql="SELECT * FROM dates ORDER BY endDate ASC";
+    $sql="SELECT * FROM dates ORDER BY endDate ASC"; 
     
     $result = mysqli_query($con,$sql);
     $users_arr = mysqli_fetch_all($result);

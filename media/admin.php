@@ -5,7 +5,6 @@
                     exit;
                 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +37,32 @@
         </div>
         <div class="third text-center not_main">
 
+            <form method="get" action="admin.php">
+                
+                Filters
+                <?php                        
+
+                require_once("dbinfo.php");
+                $conn = mysqli_connect($servername,$usr,$psw,$db);
+                $sql="SELECT * FROM universities";
+                $result = mysqli_query($conn,$sql);
+                $users_arr = mysqli_fetch_all($result);
+
+                    echo "drop<select name='paneps'>";
+                    for($i=0;$i<mysqli_num_rows($result);$i++)
+                        echo '<option selected value="'.$users_arr[$i][1].'">'.$users_arr[$i][1].'';
+                    echo '</select>';
+                ?>
+
+                Selection<select name="selectm">
+                <option  type="checkbox" name="box1" value="sel1">filterss<br>
+                <option type="checkbox" name="box2" value="sel2">approved<br>
+                <option type="checkbox" name="box3" value="sel3">universities<br>
+                <option type="checkbox" name="box4" value="sel5">new admin<br>
+                <option type="checkbox" name="box5" value="sel4">
+                <br><input type="submit" value="submit"><br>
+
+            </form>
 <!-- 
         // --  δ) Επιλογή για την εμφάνιση όλων των συνεργαζόμενων Πανεπιστημίων και δυνατότητα 
     // -- προσθήκης νέου Πανεπιστημίου. 
@@ -45,33 +70,25 @@
 
             <h1>admin page</h1>
             <?php
-                    require_once("dbinfo.php");
-                    $conn = mysqli_connect($servername,$usr,$psw,$db);
-                    //1... $sql="SELECT * FROM application ORDER BY moClass DESC"; 
-                    //2... $sql="SELECT * FROM application WHERE percentClass>=70  ORDER BY moClass DESC";
-                    //3.......$sql="SELECT * FROM application WHERE uni1='$given'  ORDER BY moClass DESC
-                    // echo "drop<select name='paneps'>";
-                    // for($i=0;$i<mysqli_num_rows($result);$i++)
-                    //     echo '<option selected value="'.$users_arr[$i][1].'">'.$users_arr[$i][1].'';
-                    // echo '</select>';
-                    // echo '<input type="submit" value="Search"><br>';
-                    //4....
-                    //5... $sql="SELECT * FROM universities"; 
-                    //6... $sql="SELECT * FROM users where user_type_id=1"; 
-                    $sql="SELECT * FROM universities";
+            // if ($_SERVER["REQUEST_METHOD"] === "GET") {
+            // }
+
+                        //1... $sql="SELECT * FROM application ORDER BY moClass DESC"; 
+                        //2... $sql="SELECT * FROM application WHERE percentClass>=70  ORDER BY moClass DESC";
+                        //3.......$sql="SELECT * FROM application WHERE uni1='$given'  ORDER BY moClass DESC
+                        // echo '<input type="submit" value="Search"><br>';
 
 
 
+                require_once("dbinfo.php");
+                $conn = mysqli_connect($servername,$usr,$psw,$db);
+                $sql="SELECT * FROM universities";
+                $sql="SELECT * FROM dates ORDER BY endDate ASC"; 
+    // print_r( $users_arr[$i][0]); id of application
 
-
-
-// print_r( $users_arr[$i][0]); id of application
-
-$result = mysqli_query($conn,$sql);
-$users_arr = mysqli_fetch_all($result);
-printQuery($users_arr,0);
-
-
+                    $result = mysqli_query($conn,$sql);
+                    $users_arr = mysqli_fetch_all($result);
+                    printQuery($users_arr,0);
                     mysqli_close($conn);
                     //for 4.... aprroval of uni
                     // echo "<form method=post action=admin.php>";
