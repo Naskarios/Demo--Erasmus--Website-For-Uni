@@ -142,16 +142,21 @@ $username=$_COOKIE["user"];
 
 if($_POST["checkbox"])
 {
-    
-    
-    // $conn = mysqli_connect($servername, $usr, $psw, $db);
-    // if (!$conn) {
-    //     die("Connection failed: " . mysqli_connect_error());
-    // }
-    // // cert 	extra 	classFile 	certFile 	extraFile
-    // $sql = "INSERT INTO application(fname,lname,a_m,percentClass,moClass,uni1 ,uni2,uni3,username) VALUES('$name','$surname','$am','$num1','$num2','$paneps1','$username')";
-    // mysqli_query($conn,$sql);
-    
+    $conn = mysqli_connect($servername, $usr, $psw, $db);
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = "INSERT INTO application (fname, lname, a_m, percentClass, moClass, cert, extra, classFile, certFile, extraFile, uni1, uni2, uni3, approval)
+        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2', '$myFile1', '$myFile2', '$myFiles', '$paneps1', '$paneps2', '$paneps3', '$checkbox')";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "Data inserted successfully.";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
 }
 else
 echo "accept terms";
