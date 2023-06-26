@@ -47,6 +47,17 @@
             
             <div class="third">
                 <main>
+                    <?php 
+                    $curDate=date("Y-m-d"); 
+                    $con=mysqli_connect($servername, $usr, $psw,$db);
+                    $sql="SELECT * FROM dates WHERE endDate >= DATE  '$curDate' ORDER BY endDate ASC";
+                    $result = mysqli_query($con,$sql);     
+                    $users_arr = mysqli_fetch_all($result);
+                    if(!$users_arr[0]){   
+                        echo"<h2>UNFORTUNATELY, <br> YOU CANNOT APPLY IN THIS TIME PERIOD</h2>";
+                    }
+                    else{
+                        echo'
                     <h1>Εδω κανουμε τις αιτησεις μπας και αποκτησει νοημα η μιζερη ζωη μας</h1>
                     <br><p>good luck i guess</p>
               <!--Oso afora ta methods den dinei idiaterh shmasia akoma opote parakalw 
@@ -111,7 +122,7 @@
                             <a href="./text/peace.pdf">TERMS OF USE</a>
                                 <INPUT type="checkbox" name="checkbox" value="checkbox_option_1">
                             νταξ <BR>
-                    </form>
+                    </form>';}?>
                 </main>
             </div>
             <div class="fourth">
@@ -123,6 +134,7 @@
                     <a href="judas.php">παρακαλω να ειστε νομιμος πολιτης</a>
                 </footer>
 <?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 $name=$_POST["name"];
 $surname=$_POST["surname"];
@@ -147,8 +159,8 @@ if($_POST["checkbox"])
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "INSERT INTO application (fname, lname, a_m, percentClass, moClass, cert, extra, classFile, certFile, extraFile, uni1, uni2, uni3, approval)
-        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2', '$myFile1', '$myFile2', '$myFiles', '$paneps1', '$paneps2', '$paneps3', '$checkbox')";
+    $sql = "INSERT INTO application (fname, lname, a_m, percentClass, moClass, cert, extra, uni1, uni2, uni3, approval)
+        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2','$paneps1', '$paneps2', '$paneps3', '$checkbox')";
 
     if (mysqli_query($conn, $sql)) {
         echo "Data inserted successfully.";
@@ -161,6 +173,7 @@ if($_POST["checkbox"])
 else
 echo "accept terms";
 
+}
 ?>
             </div>
         </div>

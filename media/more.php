@@ -64,6 +64,16 @@
                     <img src="images-videos/404d64adaf713277550e6f0d22ceec13-4231460544.jpg" alt="bored naskarios"> 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas integer eget aliquet nibh praesent tristique magna sit. Tempor id eu nisl nunc mi ipsum faucibus vitae. Augue interdum velit euismod in. Eros donec ac odio tempor orci dapibus ultrices. Velit ut tortor pretium viverra suspendisse potenti nullam ac. Convallis tellus id interdum velit laoreet id donec ultrices tincidunt. Nunc aliquet bibendum enim facilisis. Varius morbi enim nunc faucibus a pellentesque. Lorem donec massa sapien faucibus et molestie ac. Parturient montes nascetur ridiculus mus. Convallis aenean et tortor at risus viverra. Suspendisse interdum consectetur libero id. Pulvinar elementum integer enim neque volutpat. Sagittis eu volutpat odio facilisis. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Posuere sollicitudin aliquam ultrices sagittis orci a. Nisl vel pretium lectus quam id leo in vitae. Cum sociis natoque penatibus et magnis dis parturient. In hac habitasse platea dictumst.</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas integer eget aliquet nibh praesent tristique magna sit. Tempor id eu nisl nunc mi ipsum faucibus vitae. Augue interdum velit euismod in. Eros donec ac odio tempor orci dapibus ultrices. Velit ut tortor pretium viverra suspendisse potenti nullam ac. Convallis tellus id interdum velit laoreet id donec ultrices tincidunt. Nunc aliquet bibendum enim facilisis. Varius morbi enim nunc faucibus a pellentesque. Lorem donec massa sapien faucibus et molestie ac. Parturient montes nascetur ridiculus mus. Convallis aenean et tortor at risus viverra. Suspendisse interdum consectetur libero id. Pulvinar elementum integer enim neque volutpat. Sagittis eu volutpat odio facilisis. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Posuere sollicitudin aliquam ultrices sagittis orci a. Nisl vel pretium lectus quam id leo in vitae. Cum sociis natoque penatibus et magnis dis parturient. In hac habitasse platea dictumst.</p>
+<!-- <?php
+                    if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST['showtime']){
+                    $conn=mysqli_connect($servername, $usr, $psw,$db);
+                    $sql="SELECT app_id,fname,lname,a_m,percentClass,moClass,extra,uni1,uni2,uni3,approval,username FROM application WHERE approval='1'ORDER BY moClass DESC"; 
+                    $result = mysqli_query($conn,$sql);
+                    $users_arr = mysqli_fetch_all($result);
+                    printQuery($users_arr,0);
+                    }
+?> -->
+
                 </main>
             </div>
             <div class="fourth">

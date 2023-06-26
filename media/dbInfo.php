@@ -23,8 +23,9 @@ $tbody .= '<tr>';
     }
     if($flag==0)
     $tbody .= '</tr>';
-    else{
-        $tbody .= '<td><INPUT type="checkbox" name="checkbox'.$i.' value="checkbox_option_1"></td></tr>';
+    else{//if flag == 1 the checkbox will appear next to the application
+        //asxeta ama einai omorfo h oxi
+        $tbody .= '<td><INPUT type="checkbox" name='.$users_arr[$i][0].' value="checkbox_option_1"></td></tr>';
         $i++;
     }
 }
@@ -43,6 +44,7 @@ function checkUsername($username){
     $psw="";
     $db="basika";
     $flag=0;
+    //flasg is only for double checking if username exists
     // if f==1 account exists already
 
     $conn = mysqli_connect($servername,$usr,$psw,$db);
