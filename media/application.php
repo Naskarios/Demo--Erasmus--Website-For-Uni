@@ -5,6 +5,21 @@
         exit;
     }
     require_once("dbinfo.php");
+
+     $conn = mysqli_connect($servername, $usr, $psw, $db);
+     if (!$conn) {
+         die("Connection failed: " . mysqli_connect_error());
+     }
+ 
+     $username = $_COOKIE["user"];
+     $query = "SELECT fname, lname, a_m FROM users WHERE username = '$username'";
+     $result = mysqli_query($conn, $query);
+     $row = mysqli_fetch_assoc($result);
+ 
+     $name = $row["fname"];
+     $surname = $row["lname"];
+     $am = $row["a_m"];
+
 ?>
 <html>
     
@@ -47,28 +62,17 @@
             
             <div class="third">
                 <main>
-                    <?php 
-                    $curDate=date("Y-m-d"); 
-                    $con=mysqli_connect($servername, $usr, $psw,$db);
-                    $sql="SELECT * FROM dates WHERE endDate >= DATE  '$curDate' ORDER BY endDate ASC";
-                    $result = mysqli_query($con,$sql);     
-                    $users_arr = mysqli_fetch_all($result);
-                    if(!$users_arr[0]){   
-                        echo"<h2>UNFORTUNATELY, <br> YOU CANNOT APPLY IN THIS TIME PERIOD</h2>";
-                    }
-                    else{
-                        echo'
                     <h1>Εδω κανουμε τις αιτησεις μπας και αποκτησει νοημα η μιζερη ζωη μας</h1>
                     <br><p>good luck i guess</p>
               <!--Oso afora ta methods den dinei idiaterh shmasia akoma opote parakalw 
                     adiaforeiste ama deite mia lathos post h  get-->
                     <form method="post" action="application.php">
                         Ονομα &nbsp;:
-                            <BR> <INPUT type="text" name="name" placeholder="nasos"> <BR>
+                            <BR> <INPUT type="text" name="name" placeholder="nasos" value="<?php echo $name; ?>" readonly> <BR>
                         Επιθετο &nbsp;: 
-                            <BR><INPUT type="text" name="surname" placeholder="karras"> <BR>
+                            <BR><INPUT type="text" name="surname" placeholder="karras" value="<?php echo $surname; ?>" readonly> <BR>
                         Αριθμός μητρώου &nbsp;: 
-                            <BR><INPUT type="text" name="am" placeholder="2022202000082"> <BR>
+                            <BR><input type="text" name="am" placeholder="2022202000082" value="<?php echo $am; ?>" readonly>   <BR>
                         Ποσοστό «περασμένων» μαθημάτων έως και το προηγούμενο έτος σπουδών:
                             <BR><input type="number" name="num1" min="0" max="100" placeholder="ex 50=50%"><br>
                         Μέσος όρος «περασμένων» μαθημάτων έως και το προηγούμενο έτος σπουδών:
@@ -122,7 +126,7 @@
                             <a href="./text/peace.pdf">TERMS OF USE</a>
                                 <INPUT type="checkbox" name="checkbox" value="checkbox_option_1">
                             νταξ <BR>
-                    </form>';}?>
+                    </form>
                 </main>
             </div>
             <div class="fourth">
@@ -134,7 +138,6 @@
                     <a href="judas.php">παρακαλω να ειστε νομιμος πολιτης</a>
                 </footer>
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 $name=$_POST["name"];
 $surname=$_POST["surname"];
@@ -159,8 +162,8 @@ if($_POST["checkbox"])
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "INSERT INTO application (fname, lname, a_m, percentClass, moClass, cert, extra, uni1, uni2, uni3, approval)
-        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2','$paneps1', '$paneps2', '$paneps3', '$checkbox')";
+    $sql = "INSERT INTO application (fname, lname, a_m, percentClass, moClass, cert, extra, classFile, certFile, extraFile, uni1, uni2, uni3, approval)
+        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2', '$myFile1', '$myFile2', '$myFiles', '$paneps1', '$paneps2', '$paneps3', '$checkbox')";
 
     if (mysqli_query($conn, $sql)) {
         echo "Data inserted successfully.";
@@ -173,7 +176,6 @@ if($_POST["checkbox"])
 else
 echo "accept terms";
 
-}
 ?>
             </div>
         </div>
