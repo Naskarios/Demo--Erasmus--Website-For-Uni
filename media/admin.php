@@ -1,7 +1,7 @@
 <?php
 //thema sto sign up tou admin
 //kai to publish twn results
-// error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
+error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                 require_once("dbinfo.php");
                 if(!isset($_COOKIE["admin"])){
                     header("Location: more.php");
@@ -47,7 +47,18 @@
                 Start Date&nbsp; :<input type="date" name="start"><br>
                 End Date &nbsp;:<input type="date" name="end"><br>
                 <input type="submit" value="Set dates"><br>
-
+                <?php
+                                if($_GET["start"] && $_GET["end"]){//stop entering 0s to the database
+                                    $x=$_GET["start"];
+                                    $y=$_GET["end"];
+                                    $sql="INSERT INTO dates (date_id, startDate, endDate) VALUES (NULL, '$x','$y')";
+                                    mysqli_query($conn,$sql);
+                                    // $sql="SELECT * FROM dates ORDER BY endDate ASC"; 
+                                    echo "<h1>dates set</h1>";
+                                }
+                ?>
+                </form>
+                <form method="get"  action="admin.php">
                 Selection<select name="selectm">
                     <option  type="checkbox" name="box1" value="sel1">filters<br>
                     <option type="checkbox" name="box2" value="sel2">approved<br>
@@ -100,7 +111,7 @@
                     $result = mysqli_query($conn,$sql);
                     $users_arr = mysqli_fetch_all($result);
                     printQuery($users_arr,0);
-                    echo"<form method='post' action='more.php'><input type='submit' name='showtime' value='REVEAL'> </form>";
+                    echo"<form method='post' action='more.php'><input type='submit' name='showtime' value='REVEAL'>";
                 }
                 else if($_GET['selectm']=='sel3'){
                     $sql="SELECT * FROM universities";
@@ -144,18 +155,13 @@
                         }
         }
       
-                if($_GET["start"] && $_GET["end"]){//stop entering 0s to the database
-                    $x=$_GET["start"];
-                    $y=$_GET["end"];
-                    $sql="INSERT INTO dates (date_id, startDate, endDate) VALUES (NULL, '$x','$y')";
-                    // $sql="SELECT * FROM dates ORDER BY endDate ASC"; 
-                    mysqli_query($conn,$sql);
-                }
-                if($_GET['selectm']=='sel3'){
+
+                if($_GET["uniName"]){
                     $x=$_GET["uniName"];
                     $y=$_GET["uniCountry"];
                     $sql="INSERT INTO universities (university_id, university_name, country) VALUES (NULL, '$x','$y')";
                     mysqli_query($conn,$sql);
+                    echo  $x. 'from'. $y."added";
                 }
                 if($_GET['selectm']=='sel4'){
                     $sql="SELECT * FROM users where user_type_id='1'";

@@ -39,7 +39,7 @@
             
             <?php
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    echo "profile updated";
+                    echo "<h1>PROFILE UPDATED SUCCESFULLY<br>mpravo to agori mou</h1>";
                     // Retrieve the updated profile information from the form
                     $name = $_POST["name"];
                     $surname = $_POST["surname"];

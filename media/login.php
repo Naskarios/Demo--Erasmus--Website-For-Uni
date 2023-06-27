@@ -61,24 +61,21 @@
 
                 if (mysqli_num_rows($result) == 1) {
                     // Login successful
-
-                    // setcookie("registered", "peos", time() + 3600, "/");
-                    // header("Location: index.php");
-                    // exit;
                     
                     setcookie("user",$username, time()+3600);
                     
-                    $sql = "SELECT * FROM users WHERE username = '$username' AND user_id=1";
+                    $sql = "SELECT * FROM users WHERE username = '$username' AND user_type_id=1";
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) == 1){
                         setcookie("admin",$username, time()+3600);
-                        echo "<p>valid admin</p>";
+                        echo "<p>Welcome admin</p>";
                     }
-                    else
-                        echo "<p>not an admin</p>";
-
-                    echo "<p>valid user</p><br>";
-                } else {
+                    else{
+                        echo "<p>Typical User</p>";
+                        echo "<p>Bre kalws ton</p><br>";
+                    } 
+                }
+                else {
                     // Login failed
                     echo "<p class='error'>Invalid username or password.</p>";
                 }

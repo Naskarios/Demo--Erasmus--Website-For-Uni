@@ -45,16 +45,6 @@
                 Confirm Password &nbsp;: <input type="password" name="password2" id="password2" required> <br>
                 <input type="submit" value="hlia rixto"><br>
             </form>
-        </div> 
-        <div class="last">
-            <footer>
-                <a href="judas.php">παρακαλώ να είστε νόμιμος πολίτης</a>
-            </footer>            
-        </div>
-    </div>
-
-    <script src="../scripts/sign-up.js"></script>
-
     <?php
     
     
@@ -73,14 +63,24 @@
         $conn = mysqli_connect($servername, $usr, $psw, $db);
                 //  IF USERNAME DOESNT EXIST 
                 if( checkUsername($username) == 1)
-                    echo "USER ALREADY EXISTS";
+                    echo "<h1 class='text-center'>USER ALREADY EXISTS</h1>";
                 else{
-                    $sql = "INSERT INTO users (fname, lname, a_m, tel, email, username, password) VALUES ('$fname', '$lname', '$a_m', '$tel', '$email', '$username', '$password')";
+                    $sql = "INSERT INTO users (user_id,fname, lname, a_m, tel, email, username, password) VALUES (null,'$fname', '$lname', '$a_m', '$tel', '$email', '$username', '$password')";
                     mysqli_query($conn, $sql);
                 }
 
     }
     ?>
+        </div> 
+        <div class="last">
+            <footer>
+                <a href="judas.php">παρακαλώ να είστε νόμιμος πολίτης</a>
+            </footer>            
+        </div>
+    </div>
+
+    <script src="../scripts/sign-up.js"></script>
+
 
 </body>
 </html>

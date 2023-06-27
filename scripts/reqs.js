@@ -10,7 +10,7 @@ function validateApplicationForm() {
 
       // Perform validation checks
       if (paneps !== "2ο" && paneps !== "3ο" && paneps !== "bigger") {
-          alert("Το πεδίο 'Τρέχον έτος σπουδών' πρέπει να είναι '2ο', '3ο', '4ο' ή 'μεγαλύτερο'.");
+          alert("Το πεδίο 'Τρέχον έτος σπουδών' πρέπει να είναι '2ο', '3ο' ή 'μεγαλύτερο'.");
           return;
       }
 
@@ -29,7 +29,7 @@ function validateApplicationForm() {
           return;
       }
 
-      alert("Επιτυχής εξέταση υποβολής! Μπορείτε να επεξεργαστείτε τα αποτελέσματα.");
+      alert("Επιτυχής εξέταση υποβολής! Καλοταξιδό.");
   });
 }
 

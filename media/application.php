@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
     if(!isset($_COOKIE["user"])){
         header("Location: more.php");
         exit;
@@ -120,12 +121,45 @@
                                 <input type="file" name="myFile2"><br>
                             Πτυχία άλλων ξένων γλωσσών :
                                 <input type="file" name="myFiles" multiple>
-                            <br><input type="submit" value="hlia rixto"><br>
                             
+                            <br>
                             Αποδοχή των όρων &nbsp; 
                             <a href="./text/peace.pdf">TERMS OF USE</a>
-                                <INPUT type="checkbox" name="checkbox" value="checkbox_option_1">
-                            νταξ <BR>
+                                <INPUT type="checkbox" name="checkbox" value="checkbox_option_1" required>
+                            νταξ <BR><br><input type="submit" value="hlia rixto"><br>
+<?php
+    $am=$_POST["am"];
+    $num1=$_POST["num1"];
+    $num2=$_POST["num2"];
+    $my_radio_choice=$_POST["my_radio_choice"];
+    $my_radio_choice2=$_POST["my_radio_choice2"];
+    $paneps1=$_POST["paneps1"];
+    $paneps2=$_POST["paneps2"];
+    $paneps3=$_POST["paneps3"];
+    $myFile1=$_POST["myFile1"];
+    $myFile2=$_POST["myFile2"];
+    $myFiles=$_POST["myFiles"];
+    $checkbox=$_POST["checkbox"];
+    $username=$_COOKIE["user"];
+
+
+    $conn = mysqli_connect($servername, $usr, $psw, $db);
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = "INSERT INTO application (fname, lname, a_m, percentClass, moClass, cert, extra, classFile, certFile, extraFile, uni1, uni2, uni3)
+        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2', '$myFile1', '$myFile2', '$myFiles', '$paneps1', '$paneps2', '$paneps3')";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "Data inserted successfully.";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
+?>
+
                     </form>
                 </main>
             </div>
@@ -137,46 +171,6 @@
                 <footer >
                     <a href="judas.php">παρακαλω να ειστε νομιμος πολιτης</a>
                 </footer>
-<?php
-
-$name=$_POST["name"];
-$surname=$_POST["surname"];
-$am=$_POST["am"];
-$num1=$_POST["num1"];
-$num2=$_POST["num2"];
-$my_radio_choice=$_POST["my_radio_choice"];
-$my_radio_choice2=$_POST["my_radio_choice2"];
-$paneps1=$_POST["paneps1"];
-$paneps2=$_POST["paneps2"];
-$paneps3=$_POST["paneps3"];
-$myFile1=$_POST["myFile1"];
-$myFile2=$_POST["myFile2"];
-$myFiles=$_POST["myFiles"];
-$checkbox=$_POST["checkbox"];
-$username=$_COOKIE["user"];
-
-if($_POST["checkbox"])
-{
-    $conn = mysqli_connect($servername, $usr, $psw, $db);
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
-    $sql = "INSERT INTO application (fname, lname, a_m, percentClass, moClass, cert, extra, classFile, certFile, extraFile, uni1, uni2, uni3, approval)
-        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2', '$myFile1', '$myFile2', '$myFiles', '$paneps1', '$paneps2', '$paneps3', '$checkbox')";
-
-    if (mysqli_query($conn, $sql)) {
-        echo "Data inserted successfully.";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-
-    mysqli_close($conn);
-}
-else
-echo "accept terms";
-
-?>
             </div>
         </div>
     </body>

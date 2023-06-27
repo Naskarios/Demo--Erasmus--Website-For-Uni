@@ -1,5 +1,19 @@
 <?php
+// CODE REVIEW NOTES:
+// user_type_id=1 EINAI ADMIN
+// user_type_id=0 DEN EINAI ADMIN
 
+
+// visitor done(move admin from nav)
+
+// registered cookie=user me timh to username
+// app.php updaate drop-down
+// paulo fix line 20-22(AM)
+// NO BLOBS
+// ama dne exei blops apo 27+
+// douleia paulou
+// query tables headers
+// admin problems
 $servername="localhost";
 $usr="root";
 $psw="";
