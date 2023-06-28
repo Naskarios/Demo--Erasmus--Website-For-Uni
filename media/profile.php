@@ -2,7 +2,10 @@
                 require_once("dbinfo.php");
 
                 error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
-
+                if(!isset($_COOKIE["user"])){
+                    header("Location: more.php");
+                    exit;
+                }
 ?>
 
 
@@ -25,7 +28,14 @@
                 <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
                 
                 <a class="a1" href="index.php">.INDEX</a>
-                <a class="a1" href="application.php">application</a>
+                <?php
+                    if (isset($_COOKIE["admin"])) {
+                        echo'    <a class="a1 " href="admin.php">admin</a> ';
+                    }
+                        if (isset($_COOKIE["user"])) {
+                            echo '<a class="a1" href="application.php">application</a> ';
+                        }
+                    ?>
                 <a class="a1" href="reqs.php">reqs</a>
                 <a class="a1" href="sign-up.php">sign-up</a>
                 <a class="a1" href="login.php">login</a>

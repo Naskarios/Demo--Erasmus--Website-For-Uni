@@ -28,7 +28,7 @@
                     <a class="a1 " href="index.php">.INDEX</a>
                     <?php
                     if (isset($_COOKIE["admin"])) {
-                        echo'    <a class="a1 " href="admin.php">admin</a>';
+                        echo'    <a class="a1 " href="admin.php">admin</a> ';
                     }
                         if (isset($_COOKIE["user"])) {
                             echo '<a class="a1" href="application.php">application</a>';

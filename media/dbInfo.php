@@ -32,7 +32,14 @@ $tbody = '<tbody>';
 foreach($users_arr as $key => $value) {
 $tbody .= '<tr>';
     foreach($value as $k => $v) {
-    $tbody .= '<td>' . $v . '</td>';
+        if($flag==1){
+            if(stripos("$v","application")==2)
+                $tbody .= '<td><a href='.$v.'>Filelink</a></td>';
+                else
+                    $tbody .= '<td>' . $v . '</td>';
+            }
+                else
+                    $tbody .= '<td>' . $v . '</td>';
     }
     if($flag==0)
     $tbody .= '</tr>';
@@ -40,6 +47,7 @@ $tbody .= '<tr>';
         //asxeta ama einai omorfo h oxi
         $tbody .= '<td><INPUT type="checkbox" name='.$users_arr[$i][0].' value="checkbox_option_1"></td></tr>';
         $i++;
+
     }
 }
 $tbody .= '</tbody>';

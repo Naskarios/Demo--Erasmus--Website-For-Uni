@@ -1,8 +1,8 @@
 <?php
 //problems:
 //reveal
-//headers
-//blob
+//headers admin
+//MULTI-FILES
 error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                 require_once("dbinfo.php");
                 if(!isset($_COOKIE["admin"])){
@@ -33,7 +33,14 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                 }
                 ?>
                 <a class="a1" href="index.php">INDEX</a>
-                <a class="a1" href="application.php">application</a>
+                <?php
+                    if (isset($_COOKIE["admin"])) {
+                        echo'    <a class="a1 " href="admin.php">admin</a> ';
+                    }
+                        if (isset($_COOKIE["user"])) {
+                            echo '<a class="a1" href="application.php">application</a> ';
+                        }
+                    ?>
                 <a class="a1" href="reqs.php">reqs</a>
                 <a class="a1" href="sign-up.php">sign-up</a>
                 <a class="a1" href="login.php">login</a>
@@ -42,7 +49,14 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
             </nav>
         </div>
         <div class="third text-center not_main">
-            
+            <?php
+            // $sql="SELECT classFile FROM application WHERE fname='nasos'";
+            // mysqli_query($conn,$sql);
+            // $result=mysqli_query($conn,$sql);
+            // $users_arr = mysqli_fetch_all($result);
+            // $ref=$users_arr[0][0];
+            // echo "<a href='$ref'>file</a>";
+            ?>
             <form method="get"  action="admin.php">
                 <h1>admin page</h1>
                 
@@ -73,7 +87,7 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                         //results depending on selection
                 if($_GET['selectm']=='sel1' ){
                     //desc by mo
-                    $sql="SELECT app_id,fname,lname,a_m,percentClass,moClass,extra,uni1,uni2,uni3,approval,username FROM application ORDER BY moClass DESC"; 
+                    $sql="SELECT * FROM application ORDER BY moClass DESC"; 
                     $result = mysqli_query($conn,$sql);
                     $users_arr = mysqli_fetch_all($result);
 
@@ -109,11 +123,11 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                 }
                 else if($_GET['selectm']=='sel2'){  //approved and reveal
 
-                    $sql="SELECT app_id,fname,lname,a_m,percentClass,moClass,extra,uni1,uni2,uni3,approval,username FROM application WHERE approval='1'ORDER BY moClass DESC"; 
+                    $sql="SELECT * FROM application WHERE approval='1'ORDER BY moClass DESC"; 
                     $result = mysqli_query($conn,$sql);
                     $users_arr = mysqli_fetch_all($result);
                     printQuery($users_arr,0);
-                    echo"<form method='get' action='more.php'><input type='submit' name='showtime' value='REVEAL'></form>";
+                    // echo"<form method='get' action='more.php'><input type='submit' name='showtime' value='REVEAL'></form>";
                     //NO IDEA WHY IT ISNT WORKING XRISTE MOU
                 }
                 else if($_GET['selectm']=='sel3'){ //uni table and addition
@@ -136,7 +150,7 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                     // AFTER SUBMIT
                     
                     if($_GET['selectm']=='sel1'){
-                        $queries=array("SELECT app_id,fname,lname,a_m,percentClass,moClass,extra,uni1,uni2,uni3,approval,username FROM application ORDER BY moClass DESC","SELECT * FROM application WHERE percentClass>='$per'  ORDER BY moClass DESC","SELECT * FROM application WHERE uni1='$given' UNION SELECT * FROM application WHERE uni2='$given' UNION SELECT * FROM application WHERE uni3='$given'  ORDER BY moClass DESC");
+                        $queries=array("SELECT * FROM application ORDER BY moClass DESC","SELECT * FROM application WHERE percentClass>='$per'  ORDER BY moClass DESC","SELECT * FROM application WHERE uni1='$given' UNION SELECT * FROM application WHERE uni2='$given' UNION SELECT * FROM application WHERE uni3='$given'  ORDER BY moClass DESC");
                         $sql="SELECT * FROM application";
                         $approw=mysqli_query($conn,$sql);//using  this query just the number of rows
                     
@@ -146,8 +160,8 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                             $result=mysqli_query($conn,$sql);
                             $users_arr = mysqli_fetch_all($result);
                             
-                            for($i=0;$i<mysqli_num_rows($approw)+5;$i++){ 
-                                //to +5 yparxei giati ta ids twn application den einai apo to 0-7,oi times tous den einai seriakes
+                            for($i=0;$i<mysqli_num_rows($approw)+15;$i++){ 
+                                //to +15 yparxei giati ta ids twn application den einai apo to 0-7,oi times tous den einai seriakes
                                     
                                 if($_GET[$users_arr[$i][0]]=='checkbox_option_1'){
                                     $check=$users_arr[$i][0];
@@ -190,23 +204,23 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                         mysqli_query($conn, $sql);
                     }
                     
+                    echo '<h1>insert new admin</h1>
+                    <form method="post" class="text-center"  action="admin.php">
+                    <h1>Δεν έχετε λογαριασμό;</h1>
+                    <h1><b>ΚΑΙΡΟΣ ΝΑ ΕΓΓΡΑΦΕΙΤΕ</b></h1>
+                    <img src="images-videos/ino.gif" alt="smirking guy">
+                    <br>
+                    Όνομα &nbsp;: <input type="text" name="fname" id="name" placeholder="nasos" required>
+                    Επίθετο &nbsp;: <input type="text" name="lname" id="surname" placeholder="karras" required> <br>
+                    
+                    Τηλέφωνο &nbsp;: <input type="text" name="tel" id="phone" placeholder="666 999 666" required> <br>
+                    Email &nbsp;: <input type="email" name="email" id="email" placeholder="NaskAlter@gmail.com" required> <br>
+                    Username &nbsp;: <input type="text" name="username" id="username" placeholder="Naskarios" required> <br>
+                    Password &nbsp;: <input type="password" name="password" id="password" required> <br>
+                    Confirm Password &nbsp;: <input type="password" name="password2" id="password2" required> <br>
+                    <input type="submit" value="hlia rixto"><br>
+                </form>';
                 }
-                echo '<h1>insert new admin</h1>
-                <form method="post" class="text-center"  action="admin.php">
-                <h1>Δεν έχετε λογαριασμό;</h1>
-                <h1><b>ΚΑΙΡΟΣ ΝΑ ΕΓΓΡΑΦΕΙΤΕ</b></h1>
-                <img src="images-videos/ino.gif" alt="smirking guy">
-                <br>
-                Όνομα &nbsp;: <input type="text" name="fname" id="name" placeholder="nasos" required>
-                Επίθετο &nbsp;: <input type="text" name="lname" id="surname" placeholder="karras" required> <br>
-                
-                Τηλέφωνο &nbsp;: <input type="text" name="tel" id="phone" placeholder="666 999 666" required> <br>
-                Email &nbsp;: <input type="email" name="email" id="email" placeholder="NaskAlter@gmail.com" required> <br>
-                Username &nbsp;: <input type="text" name="username" id="username" placeholder="Naskarios" required> <br>
-                Password &nbsp;: <input type="password" name="password" id="password" required> <br>
-                Confirm Password &nbsp;: <input type="password" name="password2" id="password2" required> <br>
-                <input type="submit" value="hlia rixto"><br>
-            </form>';
                 
                 mysqli_close($conn);
             ?>

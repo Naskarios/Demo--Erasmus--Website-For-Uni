@@ -27,6 +27,17 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
      while ($row = mysqli_fetch_assoc($result)) {
          $universities[] = $row["university_name"];
      }
+                
+     
+     $curDate=date("Y-m-d"); 
+     $sql="SELECT * FROM dates WHERE endDate >= DATE  '$curDate' ORDER BY endDate ASC";
+     $result = mysqli_query($conn,$sql);     
+     $users_arr = mysqli_fetch_all($result);
+     if(!$users_arr[0]){   
+        header("Location: more.php");
+        exit;
+     }
+     
 
 ?>
 <html>
@@ -57,6 +68,9 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                         ?> 
                     <a class="a1 " href="index.php">.INDEX</a>
                     <?php
+                                        if (isset($_COOKIE["admin"])) {
+                                            echo'    <a class="a1 " href="admin.php">admin</a> ';
+                                        }
                     if (isset($_COOKIE["user"])) {
                         echo '<a class="a1" href="application.php">application</a>';
                     }
@@ -141,11 +155,11 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
 <?php
     $dir='./applications/'.$_COOKIE["user"];
     
-    if(!is_dir($dir))
+    if(!is_dir($dir))//create users dir for their files
         mkdir($dir);
 
 
-    for($i=1;$i<3;$i++){ //yes a for for 2 items
+    for($i=1;$i<3;$i++){ //yes a for for 2 items code apo ta slides
             $destination = $dir."/";  
             if(!empty($_FILES)) 
             { 
@@ -157,7 +171,7 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
     echo "<br>";
     
     
-    $myFile1=$dir."/".$_FILES["myFile1"]["name"]."<br>";
+    $myFile1=$dir."/".$_FILES["myFile1"]["name"]."<br>";//filepath pou tha paei stin bash
     $myFile2=$dir."/".$_FILES["myFile2"]["name"];
     $am=$_POST["am"];
     $num1=$_POST["num1"];
@@ -176,8 +190,8 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "INSERT INTO application (fname, lname, a_m, percentClass, moClass, cert, extra, classFile, certFile, extraFile, uni1, uni2, uni3)
-        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2', '$myFile1', '$myFile2', '0', '$paneps1', '$paneps2', '$paneps3')";
+    $sql = "INSERT INTO application (fname, lname, a_m, percentClass, moClass, cert, extra, classFile, certFile, extraFile, uni1, uni2, uni3,username)
+        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2', '$myFile1', '$myFile2', '0', '$paneps1', '$paneps2', '$paneps3','$username')";
 
     if (mysqli_query($conn, $sql)) {
         echo "Data inserted successfully.";

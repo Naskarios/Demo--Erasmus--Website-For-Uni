@@ -26,9 +26,12 @@
                         ?> 
                     <a class="a1 " href="index.php">.INDEX</a>
                     <?php
-                    if (isset($_COOKIE["user"])) {
-                        echo '<a class="a1" href="application.php">application</a>';
+                    if (isset($_COOKIE["admin"])) {
+                        echo'    <a class="a1 " href="admin.php">admin</a> ';
                     }
+                        if (isset($_COOKIE["user"])) {
+                            echo '<a class="a1" href="application.php">application</a> ';
+                        }
                     ?>
                     <a class="a1 " href="reqs.php">reqs</a>
                     <a class="a1 " href="sign-up.php">sign-up</a>
@@ -64,14 +67,15 @@
                     <h1>Huuuuuuh you want more?<br>What a drag...</h1>
                     <img src="images-videos/404d64adaf713277550e6f0d22ceec13-4231460544.jpg" alt="bored naskarios"> 
 <?php
-                    require_once('dbinfo.php');
-                    if ($_GET['showtime']){
-                    $conn=mysqli_connect($servername,$usr,$psw,$db);
-                    $sql="SELECT app_id,fname,lname,a_m,percentClass,moClass,extra,uni1,uni2,uni3,approval,username FROM application WHERE approval='1'ORDER BY moClass DESC"; 
-                    $result = mysqli_query($conn,$sql);
-                    $users_arr = mysqli_fetch_all($result);
-                    printQuery($users_arr,0);
-                    }
+    require_once('dbinfo.php');
+    $conn = mysqli_connect($servername, $usr, $psw, $db);
+     $curDate=date("Y-m-d"); 
+     $sql="SELECT * FROM dates WHERE endDate >= DATE  '$curDate' AND startDate <= DATE '$curDate' ORDER BY endDate ASC";
+     $result = mysqli_query($conn,$sql);     
+     $users_arr = mysqli_fetch_all($result);
+     if(!$users_arr[0]){   
+         echo"<h2>UNFORTUNATELY, <br> YOU CANNOT APPLY IN THIS TIME PERIOD</h2>";
+     }
 ?>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas integer eget aliquet nibh praesent tristique magna sit. Tempor id eu nisl nunc mi ipsum faucibus vitae. Augue interdum velit euismod in. Eros donec ac odio tempor orci dapibus ultrices. Velit ut tortor pretium viverra suspendisse potenti nullam ac. Convallis tellus id interdum velit laoreet id donec ultrices tincidunt. Nunc aliquet bibendum enim facilisis. Varius morbi enim nunc faucibus a pellentesque. Lorem donec massa sapien faucibus et molestie ac. Parturient montes nascetur ridiculus mus. Convallis aenean et tortor at risus viverra. Suspendisse interdum consectetur libero id. Pulvinar elementum integer enim neque volutpat. Sagittis eu volutpat odio facilisis. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Posuere sollicitudin aliquam ultrices sagittis orci a. Nisl vel pretium lectus quam id leo in vitae. Cum sociis natoque penatibus et magnis dis parturient. In hac habitasse platea dictumst.</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas integer eget aliquet nibh praesent tristique magna sit. Tempor id eu nisl nunc mi ipsum faucibus vitae. Augue interdum velit euismod in. Eros donec ac odio tempor orci dapibus ultrices. Velit ut tortor pretium viverra suspendisse potenti nullam ac. Convallis tellus id interdum velit laoreet id donec ultrices tincidunt. Nunc aliquet bibendum enim facilisis. Varius morbi enim nunc faucibus a pellentesque. Lorem donec massa sapien faucibus et molestie ac. Parturient montes nascetur ridiculus mus. Convallis aenean et tortor at risus viverra. Suspendisse interdum consectetur libero id. Pulvinar elementum integer enim neque volutpat. Sagittis eu volutpat odio facilisis. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Posuere sollicitudin aliquam ultrices sagittis orci a. Nisl vel pretium lectus quam id leo in vitae. Cum sociis natoque penatibus et magnis dis parturient. In hac habitasse platea dictumst.</p>
