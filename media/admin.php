@@ -1,6 +1,8 @@
 <?php
-//thema sto sign up tou admin
-//kai to publish twn results
+//problems:
+//reveal
+//headers
+//blob
 error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                 require_once("dbinfo.php");
                 if(!isset($_COOKIE["admin"])){
@@ -67,7 +69,6 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                     <!-- <option type="checkbox" name="box5" value="sel4"> -->
                 </select><br>
 
-                 
                 <?php
                         //results depending on selection
                 if($_GET['selectm']=='sel1' ){
@@ -106,14 +107,16 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                     echo "<br><h1>Selected Uni</h1>";
                     printQuery($users_arr2,1);
                 }
-                else if($_GET['selectm']=='sel2'){
+                else if($_GET['selectm']=='sel2'){  //approved and reveal
+
                     $sql="SELECT app_id,fname,lname,a_m,percentClass,moClass,extra,uni1,uni2,uni3,approval,username FROM application WHERE approval='1'ORDER BY moClass DESC"; 
                     $result = mysqli_query($conn,$sql);
                     $users_arr = mysqli_fetch_all($result);
                     printQuery($users_arr,0);
-                    echo"<form method='post' action='more.php'><input type='submit' name='showtime' value='REVEAL'>";
+                    echo"<form method='get' action='more.php'><input type='submit' name='showtime' value='REVEAL'></form>";
+                    //NO IDEA WHY IT ISNT WORKING XRISTE MOU
                 }
-                else if($_GET['selectm']=='sel3'){
+                else if($_GET['selectm']=='sel3'){ //uni table and addition
                     $sql="SELECT * FROM universities";
                     $result = mysqli_query($conn,$sql);
                     $users_arr = mysqli_fetch_all($result);
@@ -121,6 +124,8 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                     echo 'University name:<input type="text" name="uniName"><br>Country:<input type="text" name="uniCountry"><br>';
                 }
                 ?>
+
+
                 <br><input type="submit" value="submit"><br>
             </form>
 
@@ -130,19 +135,17 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
             <?php
                     // AFTER SUBMIT
                     
-                    // $sql="SELECT app_id,fname,lname,a_m,percentClass,moClass,extra,uni1,uni2,uni3,approval,username FROM application ORDER BY moClass DESC"; 
-                    // $sql="SELECT * FROM application WHERE percentClass>='$per'  ORDER BY moClass DESC"; 
-                    // $sql="SELECT * FROM application WHERE uni1='$given' UNION SELECT * FROM application WHERE uni2='$given' UNION SELECT * FROM application WHERE uni3='$given'  ORDER BY moClass DESC";
-                    
                     if($_GET['selectm']=='sel1'){
                         $queries=array("SELECT app_id,fname,lname,a_m,percentClass,moClass,extra,uni1,uni2,uni3,approval,username FROM application ORDER BY moClass DESC","SELECT * FROM application WHERE percentClass>='$per'  ORDER BY moClass DESC","SELECT * FROM application WHERE uni1='$given' UNION SELECT * FROM application WHERE uni2='$given' UNION SELECT * FROM application WHERE uni3='$given'  ORDER BY moClass DESC");
                         $sql="SELECT * FROM application";
                         $approw=mysqli_query($conn,$sql);//using  this query just the number of rows
                     
-                        for($j=0;$j<3;$j++){
+                        for($j=0;$j<3;$j++){//search for the application where the "checkbox id" matches the application id 
+                                            //the match could be in one or two or all of the queries from above (the selection filters)
                             $sql=$queries[$j];            
                             $result=mysqli_query($conn,$sql);
                             $users_arr = mysqli_fetch_all($result);
+                            
                             for($i=0;$i<mysqli_num_rows($approw)+5;$i++){ 
                                 //to +5 yparxei giati ta ids twn application den einai apo to 0-7,oi times tous den einai seriakes
                                     
@@ -156,53 +159,54 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
         }
       
 
-                if($_GET["uniName"]){
+                if($_GET["uniName"]){   //uni insert
                     $x=$_GET["uniName"];
                     $y=$_GET["uniCountry"];
                     $sql="INSERT INTO universities (university_id, university_name, country) VALUES (NULL, '$x','$y')";
                     mysqli_query($conn,$sql);
                     echo  $x. 'from'. $y."added";
                 }
-                if($_GET['selectm']=='sel4'){
+                if($_GET['selectm']=='sel4' || $_POST["fname"]){
                     $sql="SELECT * FROM users where user_type_id='1'";
                     mysqli_query($conn,$sql);
                     $result = mysqli_query($conn,$sql);
                     $users_arr = mysqli_fetch_all($result);
                     printQuery($users_arr,0);
 
-                    echo '<h1>insert new admin</h1>
-                    <form method="post" class="text-center"  action="admin.php">
-                    <h1>Δεν έχετε λογαριασμό;</h1>
-                    <h1><b>ΚΑΙΡΟΣ ΝΑ ΕΓΓΡΑΦΕΙΤΕ</b></h1>
-                    <img src="images-videos/ino.gif" alt="smirking guy">
-                    <br>
-                    Όνομα &nbsp;: <input type="text" name="fname" id="name" placeholder="nasos" required>
-                    Επίθετο &nbsp;: <input type="text" name="lname" id="surname" placeholder="karras" required> <br>
+                    $fname = $_POST["fname"];
+                    $lname = $_POST["lname"];
                     
-                    Τηλέφωνο &nbsp;: <input type="text" name="tel" id="phone" placeholder="666 999 666" required> <br>
-                    Email &nbsp;: <input type="email" name="email" id="email" placeholder="NaskAlter@gmail.com" required> <br>
-                    Username &nbsp;: <input type="text" name="username" id="username" placeholder="Naskarios" required> <br>
-                    Password &nbsp;: <input type="password" name="password" id="password" required> <br>
-                    Confirm Password &nbsp;: <input type="password" name="password2" id="password2" required> <br>
-                    <input type="submit" value="hlia rixto"><br>
-                </form>';
-                $fname = $_POST["fname"];
-                $lname = $_POST["lname"];
-                
-                $tel = $_POST["tel"];
-                $email = $_POST["email"];
-                $username = $_POST["username"];
-                $password = $_POST["password"];
-
-                        //  IF USERNAME DOESNT EXIST 
-                        if( checkUsername($username) == 1)
-                            echo "USER ALREADY EXISTS";
-                        else{
-                            $sql = "INSERT INTO users (fname, lname, a_m, tel, email, username, password,user_type_id) VALUES ('$fname', '$lname', '2022999999999', '$tel', '$email', '$username', '$password','1')";
-                            mysqli_query($conn, $sql);
-                        }
-
+                    $tel = $_POST["tel"];
+                    $email = $_POST["email"];
+                    $username = $_POST["username"];
+                    $password = $_POST["password"];
+                    
+                    //  IF USERNAME DOESNT EXIST 
+                    if( checkUsername($username) == 1)
+                    echo "USER ALREADY EXISTS";
+                    else{
+                    echo "New admin added";
+                        $sql = "INSERT INTO users (user_id,fname, lname, a_m, tel, email, username, password,user_type_id) VALUES (NULL,'$fname', '$lname', '2022999999999', '$tel', '$email', '$username', '$password','1')";
+                        mysqli_query($conn, $sql);
+                    }
+                    
                 }
+                echo '<h1>insert new admin</h1>
+                <form method="post" class="text-center"  action="admin.php">
+                <h1>Δεν έχετε λογαριασμό;</h1>
+                <h1><b>ΚΑΙΡΟΣ ΝΑ ΕΓΓΡΑΦΕΙΤΕ</b></h1>
+                <img src="images-videos/ino.gif" alt="smirking guy">
+                <br>
+                Όνομα &nbsp;: <input type="text" name="fname" id="name" placeholder="nasos" required>
+                Επίθετο &nbsp;: <input type="text" name="lname" id="surname" placeholder="karras" required> <br>
+                
+                Τηλέφωνο &nbsp;: <input type="text" name="tel" id="phone" placeholder="666 999 666" required> <br>
+                Email &nbsp;: <input type="email" name="email" id="email" placeholder="NaskAlter@gmail.com" required> <br>
+                Username &nbsp;: <input type="text" name="username" id="username" placeholder="Naskarios" required> <br>
+                Password &nbsp;: <input type="password" name="password" id="password" required> <br>
+                Confirm Password &nbsp;: <input type="password" name="password2" id="password2" required> <br>
+                <input type="submit" value="hlia rixto"><br>
+            </form>';
                 
                 mysqli_close($conn);
             ?>

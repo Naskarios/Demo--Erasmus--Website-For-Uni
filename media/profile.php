@@ -1,7 +1,7 @@
 <?php
                 require_once("dbinfo.php");
 
-    
+                error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
 
 ?>
 

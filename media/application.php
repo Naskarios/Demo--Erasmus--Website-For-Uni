@@ -49,6 +49,7 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                     <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
                     
                     <?php
+                    error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                             if (isset($_COOKIE["user"])) {
                                 echo 'Welcome '.$_COOKIE["user"]."<br>";
                                 echo '<a class="a1" href="profile.php">my profile</a>';
@@ -74,7 +75,7 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                     <br><p>good luck i guess</p>
               <!--Oso afora ta methods den dinei idiaterh shmasia akoma opote parakalw 
                     adiaforeiste ama deite mia lathos post h  get-->
-                    <form method="post" action="application.php">
+                    <form method="post" action="application.php" enctype="multipart/form-data">
                         Ονομα &nbsp;:
                             <BR> <INPUT type="text" name="name" placeholder="nasos" value="<?php echo $name; ?>" readonly> <BR>
                         Επιθετο &nbsp;: 
@@ -138,6 +139,26 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                                 <INPUT type="checkbox" name="checkbox" value="checkbox_option_1" required>
                             νταξ <BR><br><input type="submit" value="hlia rixto"><br>
 <?php
+    $dir='./applications/'.$_COOKIE["user"];
+    
+    if(!is_dir($dir))
+        mkdir($dir);
+
+
+    for($i=1;$i<3;$i++){ //yes a for for 2 items
+            $destination = $dir."/";  
+            if(!empty($_FILES)) 
+            { 
+            $destination .= $_FILES["myFile".$i]["name"]; 
+            $filename = $_FILES["myFile".$i]["tmp_name"]; 
+            move_uploaded_file($filename, $destination); 
+            }
+    }
+    echo "<br>";
+    
+    
+    $myFile1=$dir."/".$_FILES["myFile1"]["name"]."<br>";
+    $myFile2=$dir."/".$_FILES["myFile2"]["name"];
     $am=$_POST["am"];
     $num1=$_POST["num1"];
     $num2=$_POST["num2"];
@@ -146,9 +167,6 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
     $paneps1=$_POST["paneps1"];
     $paneps2=$_POST["paneps2"];
     $paneps3=$_POST["paneps3"];
-    $myFile1=$_POST["myFile1"];
-    $myFile2=$_POST["myFile2"];
-    $myFiles=$_POST["myFiles"];
     $checkbox=$_POST["checkbox"];
     $username=$_COOKIE["user"];
 
@@ -159,7 +177,7 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
     }
 
     $sql = "INSERT INTO application (fname, lname, a_m, percentClass, moClass, cert, extra, classFile, certFile, extraFile, uni1, uni2, uni3)
-        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2', '$myFile1', '$myFile2', '$myFiles', '$paneps1', '$paneps2', '$paneps3')";
+        VALUES ('$name', '$surname', '$am', '$num1', '$num2', '$my_radio_choice', '$my_radio_choice2', '$myFile1', '$myFile2', '0', '$paneps1', '$paneps2', '$paneps3')";
 
     if (mysqli_query($conn, $sql)) {
         echo "Data inserted successfully.";

@@ -1,19 +1,18 @@
 <?php
-// CODE REVIEW NOTES:
-// user_type_id=1 EINAI ADMIN
-// user_type_id=0 DEN EINAI ADMIN
+            //  INSERT HUMOR 
+                $actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+                        if($actual_link == 'http://'.$_SERVER['HTTP_HOST']."/media/dbinfo.php"){
+                            if (!isset($_COOKIE["user"])) {
+                                echo "<h1>ALT ESY</h1><br>ti kaneis edw?<br> OUST!!!!! <a href='index.php'>RE OUST LEW</a>";
+                            }
+                            else{
+                                echo '<br>GIATI MOU TO KANEIS AUTO? '.$_COOKIE["user"]."<br>";
+                                echo "<h1>TI KANEIS ESY EDW??EISAI USER</h1> <a href='index.php'>EKSW!!!</a>";
+                            }
+                        }
 
-
-// visitor done(move admin from nav)
-
-// registered cookie=user me timh to username
-// app.php updaate drop-down
-// paulo fix line 20-22(AM)
-// NO BLOBS
-// ama dne exei blops apo 27+
-// douleia paulou
-// query tables headers
-// admin problems
+                    
+    //the actual code starts from here
 $servername="localhost";
 $usr="root";
 $psw="";

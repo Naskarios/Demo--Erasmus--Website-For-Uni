@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    
+    error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
     if(isset($_COOKIE["user"])){
         header("Location: more.php");
         exit;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
     require_once("dbinfo.php");
     if(isset($_COOKIE["user"])){
         header("Location: more.php");
@@ -68,11 +69,13 @@
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) == 1){
                         setcookie("admin",$username, time()+3600);
-                        echo "<p>Welcome admin</p>";
+                        echo "<p>Welcome admin</p>";//yparxoun gia debug
+                        header("Location: more.php");
+                        exit;
                     }
                     else{
-                        echo "<p>Typical User</p>";
-                        echo "<p>Bre kalws ton</p><br>";
+                        echo "<p>Typical User</p>";//yparxoun gia debug
+                        echo "<p>Bre kalws ton</p><br>";//yparxoun gia debug
                         header("Location: more.php");
                         exit;
                     } 

@@ -19,14 +19,17 @@
                 <nav>         
                     <h3 class="a1">Διαλεξε ιστοσελιδα</h3>
                          <?php
+                         error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                             if (isset($_COOKIE["user"])) {
                                 echo 'Welcome '.$_COOKIE["user"]."<br>";
                                 echo '<a class="a1" href="profile.php">my profile</a>';
                             }
                         ?>               
                     <a class="a1 " href="index.php">.INDEX</a>
-                    <a class="a1 " href="admin.php">admin</a>
                     <?php
+                    if (isset($_COOKIE["admin"])) {
+                        echo'    <a class="a1 " href="admin.php">admin</a>';
+                    }
                         if (isset($_COOKIE["user"])) {
                             echo '<a class="a1" href="application.php">application</a>';
                         }
