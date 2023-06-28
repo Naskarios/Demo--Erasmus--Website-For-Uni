@@ -75,9 +75,9 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                         Αριθμός μητρώου &nbsp;: 
                             <BR><input type="text" name="am" placeholder="2022202000082" value="<?php echo $am; ?>" readonly>   <BR>
                         Ποσοστό «περασμένων» μαθημάτων έως και το προηγούμενο έτος σπουδών:
-                            <BR><input type="number" name="num1" min="0" max="100" placeholder="ex 50=50%"><br>
+                            <BR><input type="number" name="num1" min="0" max="100" placeholder="ex 50=50%" required><br>
                         Μέσος όρος «περασμένων» μαθημάτων έως και το προηγούμενο έτος σπουδών:
-                            <BR><input type="number" name="num2" min="0"  placeholder="ex 2.1"><br>
+                            <BR><input type="number" name="num2" min="0"  placeholder="ex 2.1" required><br>
                         Πιστοποιητικό γνώσης της αγγλικής γλώσσας<br>
                             <INPUT type="radio" name="my_radio_choice" value="radioA1" checked>A1
                             <INPUT type="radio" name="my_radio_choice" value="radioA2" >A2
@@ -116,9 +116,9 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                             <br>
                             <br>
                             Αναλυτική βαθμολογία:
-                                <input type="file" name="myFile1"><br>
+                                <input type="file" name="myFile1" required><br>
                             Πτυχίο αγγλικής γλώσσας:
-                                <input type="file" name="myFile2"><br>
+                                <input type="file" name="myFile2" required><br>
                             Πτυχία άλλων ξένων γλωσσών :
                                 <input type="file" name="myFiles" multiple>
                             

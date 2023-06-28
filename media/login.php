@@ -73,6 +73,8 @@
                     else{
                         echo "<p>Typical User</p>";
                         echo "<p>Bre kalws ton</p><br>";
+                        header("Location: more.php");
+                        exit;
                     } 
                 }
                 else {
