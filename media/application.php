@@ -21,6 +21,13 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
      $surname = $row["lname"];
      $am = $row["a_m"];
 
+     $query = "SELECT university_name FROM universities";
+     $result = mysqli_query($conn, $query);
+     $universities = array();
+     while ($row = mysqli_fetch_assoc($result)) {
+         $universities[] = $row["university_name"];
+     }
+
 ?>
 <html>
     
@@ -94,24 +101,27 @@ error_reporting(E_ERROR | E_PARSE); // XAXAXAXAXAXAXA
                         <!--selected value is the value "first shown"/preselected-->
                         Πανεπιστήμιο - 1η επιλογή 
                             <select name="paneps1">
-                                <option selected value="uni1">uni1
-                                <option value="uni2">uni2
-                                <option value="uni3">uni3
-                                <option value="uni4">uni4
+                            <?php
+                                    foreach ($universities as $university) {
+                                        echo '<option value="' . $university . '">' . $university . '</option>';
+                                    }
+                                ?>
                             </select><br>
                         Πανεπιστήμιο - 2η επιλογή 
                             <select name="paneps2">
-                                <option value="uni1">uni1
-                                <option selected value="uni2">uni2
-                                <option value="uni3">uni3
-                                <option value="uni4">uni4
+                            <?php
+                                    foreach ($universities as $university) {
+                                        echo '<option value="' . $university . '">' . $university . '</option>';
+                                    }
+                                ?>
                             </select><br>
                         Πανεπιστήμιο - 3η επιλογή 
                             <select name="paneps3">
-                                <option selected value="uni1">uni1
-                                <option value="uni2">uni2
-                                <option value="uni3">uni3
-                                <option value="uni4">uni4
+                            <?php
+                                    foreach ($universities as $university) {
+                                        echo '<option value="' . $university . '">' . $university . '</option>';
+                                    }
+                                ?>
                             </select>
                             <br>
                             <br>
